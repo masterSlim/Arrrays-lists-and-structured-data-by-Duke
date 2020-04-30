@@ -50,8 +50,8 @@ public class CodonCount {
     for(int i = 0; i<3; i++){
     buildCodonMap(i, fr.asString());
     System.out.println("\n Started at " + i+ "\n Total codons: " + this.dna.size() + "\n Most common codon is:" 
-    + getMostCommonCodon()+ " with " + this.dna.get(getMostCommonCodon())+ " counts.\nBetween 0 and 2 occurences inclusive are: ");
-    printCodonCounts(0, 2);   
+    + getMostCommonCodon()+ " with " + this.dna.get(getMostCommonCodon())+ " counts.\nBetween 4 and 4 occurences inclusive are: ");
+    printCodonCounts(4, 4);   
     }
     }
 }

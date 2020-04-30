@@ -17,9 +17,22 @@ public class WordsInFile {
     private void addWordsFromFile(File f){
     FileResource fr = new FileResource(f);
     for(String s : fr.words()){
+        s = s.toLowerCase().trim();         
+        /*if(s.length()<=0) continue; 
+        if(!Character.isLetter(s.charAt(s.length()-1))){
+        s = s.substring(0, s.length()-1);
+        }        
+        if(s.length()<=0) continue;
+        if(!Character.isLetter(s.charAt(0))){
+        s = s.substring(1, s.length());
+        }        
+        if(s.length()<=0) continue;
+        */
         if(words.containsKey(s)){
         ArrayList temp = words.get(s);
-        temp.add(f.getName());
+            if(!temp.contains(f.getName())){
+                temp.add(f.getName());
+            }
         words.put(s, temp);
         } else{
             ArrayList temp = new ArrayList();
@@ -58,17 +71,20 @@ public class WordsInFile {
     void printFilesIn(String word){
     for (String key : words.keySet()){
     if(key.equals(word)){
-        ArrayList files = words.get(key);
-        for (int i = 0; i< files.size(); i++){
-            System.out.println(files.get(i));
+        for (int i = 0; i< words.get(key).size(); i++){
+            System.out.println(words.get(key).get(i));
         }
     }
     }
     }
     void tester(){
     buildWordFileMap();
+    System.out.println("red appeared in:");
+    printFilesIn("red");   
+    System.out.println("sad appeared in:");
+    printFilesIn("sad");
+    System.out.println(wordsInNumFiles(4).size());
     System.out.println("Max number is: " + maxNumber());
     System.out.println(words.keySet());
-    System.out.println(words.values());
     }    
 }
